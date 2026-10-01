@@ -12,4 +12,13 @@ public static class DiagnosticDescriptors
         defaultSeverity: DiagnosticSeverity.Warning,
         isEnabledByDefault: true,
         description: "A class containing an Azure Function trigger method should be named after the function, e.g. [Function(\"X\")] -> class XFunction.");
+
+    public static readonly DiagnosticDescriptor PreferTypedLogger = new(
+        id: "AZURE_FUNCTIONS_0002",
+        title: "Prefer ILogger<T> over ILogger",
+        messageFormat: "'{0}' should be typed 'ILogger<{1}>' instead of 'ILogger'",
+        category: "Design",
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true,
+        description: "A class containing an Azure Function trigger method should inject ILogger<T> rather than the untyped ILogger, so log entries are categorized by the class.");
 }

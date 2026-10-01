@@ -22,6 +22,7 @@ internal static class CSharpAnalyzerVerifier<TAnalyzer>
         };
 
         test.TestState.AdditionalReferences.Add(typeof(Microsoft.Azure.Functions.Worker.FunctionAttribute).Assembly);
+        test.TestState.AdditionalReferences.Add(typeof(Microsoft.Extensions.Logging.ILogger).Assembly);
         test.ExpectedDiagnostics.AddRange(expected);
         return test.RunAsync();
     }
