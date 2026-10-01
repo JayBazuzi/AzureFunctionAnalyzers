@@ -6,12 +6,30 @@ on:
   schedule:
     - cron: '17 7 * * 0'
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-dotnet@v4
         with:
           global-json-file: global.json
       - run: ./build-and-test.cmd
+      - name: Pack
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: dotnet pack src/AzureFunctionAnalyzers/AzureFunctionAnalyzers.csproj -c Release -o ./artifacts
+      - name: NuGet Login
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: JayBazuzi
+      - name: Publish to NuGet
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: dotnet nuget push "./artifacts/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --skip-duplicate
