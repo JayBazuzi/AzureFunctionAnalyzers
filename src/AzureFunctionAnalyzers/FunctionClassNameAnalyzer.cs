@@ -12,8 +12,17 @@ public sealed class FunctionClassNameAnalyzer : DiagnosticAnalyzer
 {
     private const string FunctionAttributeFullName = "Microsoft.Azure.Functions.Worker.FunctionAttribute";
 
+    public static readonly DiagnosticDescriptor FunctionClassNameMismatch = new(
+        id: "AZURE_FUNCTIONS_0001",
+        title: "Function class name should match the function name",
+        messageFormat: "Class '{0}' contains [Function(\"{1}\")] and should be named '{2}'",
+        category: "Naming",
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true,
+        description: "A class containing an Azure Function trigger method should be named after the function, e.g. [Function(\"X\")] -> class XFunction.");
+
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
-        [DiagnosticDescriptors.FunctionClassNameMismatch];
+        [FunctionClassNameMismatch];
 
     public override void Initialize(AnalysisContext context)
     {
@@ -73,7 +82,7 @@ public sealed class FunctionClassNameAnalyzer : DiagnosticAnalyzer
             .Add("ExpectedClassName", expectedClassName);
 
         context.ReportDiagnostic(Diagnostic.Create(
-            DiagnosticDescriptors.FunctionClassNameMismatch,
+            FunctionClassNameMismatch,
             location,
             properties,
             containingType.Name,

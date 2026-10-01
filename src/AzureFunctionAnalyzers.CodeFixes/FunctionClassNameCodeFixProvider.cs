@@ -15,7 +15,7 @@ namespace AzureFunctionAnalyzers;
 public sealed class FunctionClassNameCodeFixProvider : CodeFixProvider
 {
     public override ImmutableArray<string> FixableDiagnosticIds { get; } =
-        [DiagnosticDescriptors.FunctionClassNameMismatch.Id];
+        [FunctionClassNameAnalyzer.FunctionClassNameMismatch.Id];
 
     public override FixAllProvider? GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 

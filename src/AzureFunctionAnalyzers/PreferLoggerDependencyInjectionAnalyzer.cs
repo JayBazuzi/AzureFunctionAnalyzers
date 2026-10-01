@@ -13,8 +13,17 @@ public sealed class PreferLoggerDependencyInjectionAnalyzer : DiagnosticAnalyzer
     private const string FunctionAttributeFullName = "Microsoft.Azure.Functions.Worker.FunctionAttribute";
     private const string FunctionContextTypeName = "FunctionContext";
 
+    public static readonly DiagnosticDescriptor PreferLoggerDependencyInjection = new(
+        id: "AZURE_FUNCTIONS_0003",
+        title: "Prefer injecting ILogger<T> over FunctionContext.GetLogger",
+        messageFormat: "Use constructor-injected ILogger<{0}> instead of calling '{1}'",
+        category: "Design",
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true,
+        description: "A class containing an Azure Function trigger method should receive its logger via constructor dependency injection rather than calling FunctionContext.GetLogger, which bypasses the DI container.");
+
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
-        [DiagnosticDescriptors.PreferLoggerDependencyInjection];
+        [PreferLoggerDependencyInjection];
 
     public override void Initialize(AnalysisContext context)
     {
@@ -62,7 +71,7 @@ public sealed class PreferLoggerDependencyInjectionAnalyzer : DiagnosticAnalyzer
             : invocation.Expression.ToString();
 
         context.ReportDiagnostic(Diagnostic.Create(
-            DiagnosticDescriptors.PreferLoggerDependencyInjection,
+            PreferLoggerDependencyInjection,
             invocation.GetLocation(),
             containingType.Name,
             invocationText));

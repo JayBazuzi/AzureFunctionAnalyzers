@@ -13,8 +13,17 @@ public sealed class PreferTypedLoggerAnalyzer : DiagnosticAnalyzer
     private const string FunctionAttributeFullName = "Microsoft.Azure.Functions.Worker.FunctionAttribute";
     private const string LoggerFullName = "Microsoft.Extensions.Logging.ILogger";
 
+    public static readonly DiagnosticDescriptor PreferTypedLogger = new(
+        id: "AZURE_FUNCTIONS_0002",
+        title: "Prefer ILogger<T> over ILogger",
+        messageFormat: "'{0}' should be typed 'ILogger<{1}>' instead of 'ILogger'",
+        category: "Design",
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true,
+        description: "A class containing an Azure Function trigger method should inject ILogger<T> rather than the untyped ILogger, so log entries are categorized by the class.");
+
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
-        [DiagnosticDescriptors.PreferTypedLogger];
+        [PreferTypedLogger];
 
     public override void Initialize(AnalysisContext context)
     {
@@ -67,7 +76,7 @@ public sealed class PreferTypedLoggerAnalyzer : DiagnosticAnalyzer
             }
 
             context.ReportDiagnostic(Diagnostic.Create(
-                DiagnosticDescriptors.PreferTypedLogger,
+                PreferTypedLogger,
                 parameter.Locations.FirstOrDefault() ?? Location.None,
                 parameter.Name,
                 containingType.Name));
@@ -105,7 +114,7 @@ public sealed class PreferTypedLoggerAnalyzer : DiagnosticAnalyzer
             ?? "logger";
 
         context.ReportDiagnostic(Diagnostic.Create(
-            DiagnosticDescriptors.PreferTypedLogger,
+            PreferTypedLogger,
             invocation.GetLocation(),
             name,
             containingType.Name));
