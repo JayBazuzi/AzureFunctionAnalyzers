@@ -21,4 +21,13 @@ public static class DiagnosticDescriptors
         defaultSeverity: DiagnosticSeverity.Warning,
         isEnabledByDefault: true,
         description: "A class containing an Azure Function trigger method should inject ILogger<T> rather than the untyped ILogger, so log entries are categorized by the class.");
+
+    public static readonly DiagnosticDescriptor PreferLoggerDependencyInjection = new(
+        id: "AZURE_FUNCTIONS_0003",
+        title: "Prefer injecting ILogger<T> over FunctionContext.GetLogger",
+        messageFormat: "Use constructor-injected ILogger<{0}> instead of calling '{1}'",
+        category: "Design",
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true,
+        description: "A class containing an Azure Function trigger method should receive its logger via constructor dependency injection rather than calling FunctionContext.GetLogger, which bypasses the DI container.");
 }
