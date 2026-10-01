@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AzureFunctionAnalyzers.CodeFixes/AzureFunctionAnalyzers.CodeFixes.csproj" />
+    <Project Path="src/AzureFunctionAnalyzers/AzureFunctionAnalyzers.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/AzureFunctionAnalyzers.Tests/AzureFunctionAnalyzers.Tests.csproj" />
+  </Folder>
+</Solution>
