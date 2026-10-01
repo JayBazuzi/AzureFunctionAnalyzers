@@ -21,9 +21,12 @@ jobs:
         with:
           global-json-file: global.json
       - run: ./build-and-test.cmd
+      - name: Build Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: dotnet build AzureFunctionAnalyzers.slnx -c Release
       - name: Pack
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: dotnet pack src/AzureFunctionAnalyzers/AzureFunctionAnalyzers.csproj -c Release -o ./artifacts
+        run: dotnet pack src/AzureFunctionAnalyzers/AzureFunctionAnalyzers.csproj -c Release -o ./artifacts --no-build
       - name: NuGet Login
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: NuGet/login@v1
