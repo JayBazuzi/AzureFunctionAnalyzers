@@ -28,8 +28,10 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           global-json-file: global.json
+      - name: Build Release
+        run: dotnet build AzureFunctionAnalyzers.slnx -c Release -p:VersionSuffix="ci.${{ github.run_number }}"
       - name: Pack prerelease
-        run: dotnet pack AzureFunctionAnalyzers.slnx -c Release -p:VersionSuffix="ci.${{ github.run_number }}" -o ./artifacts
+        run: dotnet pack AzureFunctionAnalyzers.slnx -c Release -p:VersionSuffix="ci.${{ github.run_number }}" -o ./artifacts --no-build
       - name: NuGet Login
         uses: NuGet/login@v1
         id: login
