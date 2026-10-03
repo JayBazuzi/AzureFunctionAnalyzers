@@ -19,27 +19,25 @@ Roslyn analyzers for common Azure Functions patterns.
 ## Examples
 
 <!-- snippet: FunctionClassNameAnalyzerExample -->
-<a id='snippet-FunctionClassNameAnalyzerExample'></a>
 ```cs
 class UserGetter
 {
     [{|#0:Function("GetUsers")|}] // warning: Class name 'UserGetter' does not match function name 'GetUsers', expected 'GetUsersFunction'
-    public void Run() { }
+    public void Run()
+    {
+        //...
+    }
 }
 ```
-<sup><a href='/test/AzureFunctionAnalyzers.Tests/FunctionClassNameAnalyzerTests.cs#L30-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-FunctionClassNameAnalyzerExample' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <!-- snippet: PreferTypedLoggerAnalyzerExample -->
-<a id='snippet-PreferTypedLoggerAnalyzerExample'></a>
 ```cs
 var logger = {|#0:context.GetLogger("GetUsersFunction")|};  // warning: 'logger' should be typed 'ILogger<GetUsersFunction>' instead of 'ILogger'
 ```
-<sup><a href='/test/AzureFunctionAnalyzers.Tests/PreferTypedLoggerAnalyzerTests.cs#L76-L78' title='Snippet source file'>snippet source</a> | <a href='#snippet-PreferTypedLoggerAnalyzerExample' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <!-- snippet: PreferLoggerDependencyInjectionAnalyzerExample -->
-<a id='snippet-PreferLoggerDependencyInjectionAnalyzerExample'></a>
 ```cs
 class GetUsersFunction
 {
@@ -47,8 +45,8 @@ class GetUsersFunction
     public void Run(FunctionContext context)
     {
         var logger = {|#0:context.GetLogger<GetUsersFunction>()|};  // warning: Use constructor-injected ILogger<GetUsersFunction> instead of calling 'GetLogger'
+        //...
     }
 }
 ```
-<sup><a href='/test/AzureFunctionAnalyzers.Tests/PreferLoggerDependencyInjectionAnalyzerTests.cs#L72-L81' title='Snippet source file'>snippet source</a> | <a href='#snippet-PreferLoggerDependencyInjectionAnalyzerExample' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
