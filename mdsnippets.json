@@ -1,4 +1,7 @@
 {
   "OmitSnippetLinks": true,
-  "Convention": "InPlaceOverwrite"
+  "Convention": "InPlaceOverwrite",
+  "ExcludeMarkdownDirectories": [
+    "test"
+  ]
 }
