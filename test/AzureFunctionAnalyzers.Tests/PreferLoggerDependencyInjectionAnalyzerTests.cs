@@ -69,14 +69,16 @@ public class PreferLoggerDependencyInjectionAnalyzerTests
                 public ILogger<T> GetLogger<T>() => null!;
             }
 
+            // begin-snippet: PreferLoggerDependencyInjectionAnalyzerExample
             class GetUsersFunction
             {
                 [Function("GetUsers")]
                 public void Run(FunctionContext context)
                 {
-                    var logger = {|#0:context.GetLogger<GetUsersFunction>()|};
+                    var logger = {|#0:context.GetLogger<GetUsersFunction>()|};  // warning: Use constructor-injected ILogger<GetUsersFunction> instead of calling 'GetLogger'
                 }
             }
+            // end-snippet
             """;
 
         var expected = Verify.Diagnostic("AZURE_FUNCTIONS_0003")

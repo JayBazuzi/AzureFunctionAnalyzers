@@ -27,11 +27,13 @@ public class FunctionClassNameAnalyzerTests
         const string source = """
             using Microsoft.Azure.Functions.Worker;
 
+            // begin-snippet: FunctionClassNameAnalyzerExample
             class UserGetter
             {
-                [{|#0:Function("GetUsers")|}]
+                [{|#0:Function("GetUsers")|}] // warning: Class name 'UserGetter' does not match function name 'GetUsers', expected 'GetUsersFunction'
                 public void Run() { }
             }
+            // end-snippet
             """;
 
         var expected = Verify.Diagnostic("AZURE_FUNCTIONS_0001")

@@ -73,7 +73,9 @@ public class PreferTypedLoggerAnalyzerTests
                 [Function("GetUsers")]
                 public void Run(FunctionContext context)
                 {
-                    var logger = {|#0:context.GetLogger("GetUsersFunction")|};
+                    // begin-snippet: PreferTypedLoggerAnalyzerExample
+                    var logger = {|#0:context.GetLogger("GetUsersFunction")|};  // warning: 'logger' should be typed 'ILogger<GetUsersFunction>' instead of 'ILogger'
+                    // end-snippet
                 }
             }
             """;
