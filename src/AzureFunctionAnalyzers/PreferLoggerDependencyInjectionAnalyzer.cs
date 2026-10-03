@@ -15,7 +15,7 @@ public sealed class PreferLoggerDependencyInjectionAnalyzer : DiagnosticAnalyzer
 
     public static readonly DiagnosticDescriptor PreferLoggerDependencyInjection = new(
         id: "AZURE_FUNCTIONS_0003",
-        title: "Prefer injecting ILogger<T> over FunctionContext.GetLogger",
+        title: "Prefer injecting `ILogger<T>` over `FunctionContext.GetLogger()`",
         messageFormat: "Use constructor-injected ILogger<{0}> instead of calling '{1}'",
         category: "Design",
         defaultSeverity: DiagnosticSeverity.Warning,

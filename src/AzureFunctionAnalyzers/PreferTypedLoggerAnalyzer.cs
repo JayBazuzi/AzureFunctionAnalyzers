@@ -15,7 +15,7 @@ public sealed class PreferTypedLoggerAnalyzer : DiagnosticAnalyzer
 
     public static readonly DiagnosticDescriptor PreferTypedLogger = new(
         id: "AZURE_FUNCTIONS_0002",
-        title: "Prefer ILogger<T> over ILogger",
+        title: "Prefer `ILogger<T>` over `ILogger`",
         messageFormat: "'{0}' should be typed 'ILogger<{1}>' instead of 'ILogger'",
         category: "Design",
         defaultSeverity: DiagnosticSeverity.Warning,
