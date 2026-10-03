@@ -33,7 +33,11 @@ class UserGetter
 
 <!-- snippet: PreferTypedLoggerAnalyzerExample -->
 ```cs
-var logger = {|#0:context.GetLogger("GetUsersFunction")|};  // warning: 'logger' should be typed 'ILogger<GetUsersFunction>' instead of 'ILogger'
+[Function("GetUsers")]
+public void Run(FunctionContext context)
+{
+    var logger = {|#0:context.GetLogger("GetUsersFunction")|};  // warning: 'logger' should be typed 'ILogger<GetUsersFunction>' instead of 'ILogger'
+    //...
 ```
 <!-- endSnippet -->
 
