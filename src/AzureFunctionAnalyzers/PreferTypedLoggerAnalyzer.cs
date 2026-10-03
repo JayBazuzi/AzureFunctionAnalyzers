@@ -1,4 +1,4 @@
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -120,8 +120,8 @@ public sealed class PreferTypedLoggerAnalyzer : DiagnosticAnalyzer
             containingType.Name));
     }
 
-    private static bool HasFunctionMethod(INamedTypeSymbol containingType, INamedTypeSymbol functionAttributeSymbol) =>
-        containingType.GetMembers()
+    private static bool HasFunctionMethod(INamedTypeSymbol containingType, INamedTypeSymbol functionAttributeSymbol)
+        => containingType.GetMembers()
             .OfType<IMethodSymbol>()
             .Any(m => m.GetAttributes()
                 .Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, functionAttributeSymbol)));

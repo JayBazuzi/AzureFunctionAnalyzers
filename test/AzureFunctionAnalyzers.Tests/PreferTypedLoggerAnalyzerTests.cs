@@ -1,4 +1,4 @@
-using Verify = AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<AzureFunctionAnalyzers.PreferTypedLoggerAnalyzer>;
+﻿using Verify = AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<AzureFunctionAnalyzers.PreferTypedLoggerAnalyzer>;
 
 namespace AzureFunctionAnalyzers.Tests;
 
