@@ -31,7 +31,10 @@ public class FunctionClassNameAnalyzerTests
             class UserGetter
             {
                 [{|#0:Function("GetUsers")|}] // warning: Class name 'UserGetter' does not match function name 'GetUsers', expected 'GetUsersFunction'
-                public void Run() { }
+                public void Run()
+                {
+                    //...
+                }
             }
             // end-snippet
             """;

@@ -76,6 +76,7 @@ public class PreferLoggerDependencyInjectionAnalyzerTests
                 public void Run(FunctionContext context)
                 {
                     var logger = {|#0:context.GetLogger<GetUsersFunction>()|};  // warning: Use constructor-injected ILogger<GetUsersFunction> instead of calling 'GetLogger'
+                    //...
                 }
             }
             // end-snippet
