@@ -67,6 +67,12 @@ public sealed class FunctionClassNameAnalyzer : DiagnosticAnalyzer
         }
 
         var containingType = methodSymbol.ContainingType;
+        if (containingType.GetMembers().OfType<IMethodSymbol>().Count(m => m.GetAttributes()
+                .Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, functionAttributeSymbol))) > 1)
+        {
+            return;
+        }
+
         var expectedClassName = functionName + "Function";
         if (containingType.Name == expectedClassName)
         {

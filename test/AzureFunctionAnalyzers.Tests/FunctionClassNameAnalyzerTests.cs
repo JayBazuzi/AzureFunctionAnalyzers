@@ -22,6 +22,25 @@ public class FunctionClassNameAnalyzerTests
     }
 
     [Fact]
+    public async Task TwoFunctionsInClass_NoDiagnostic()
+    {
+        const string source = """
+            using Microsoft.Azure.Functions.Worker;
+
+            class Users
+            {
+                [Function("GetUsers")]
+                public void Get() { }
+
+                [Function("PutUsers")]
+                public void Put() { }
+            }
+            """;
+
+        await Verify.VerifyAnalyzerAsync(source);
+    }
+
+    [Fact]
     public async Task MismatchedClassName_ReportsDiagnostic()
     {
         const string source = """
