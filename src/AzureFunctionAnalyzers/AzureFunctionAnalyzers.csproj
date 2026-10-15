@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>AzureFunctionAnalyzers</PackageId>
+    <PackageId>Bazuzi.AzureFunctionAnalyzers</PackageId>
     <Description>Roslyn analyzers for common Azure Functions mistakes: binding/attribute correctness, DI pitfalls, and naming conventions.</Description>
     <PackageTags>azurefunctions;analyzers;roslyn</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>

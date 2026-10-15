@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace AzureFunctionAnalyzers;
+namespace Bazuzi.AzureFunctionAnalyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class RouteConstraintParameterTypeAnalyzer : DiagnosticAnalyzer

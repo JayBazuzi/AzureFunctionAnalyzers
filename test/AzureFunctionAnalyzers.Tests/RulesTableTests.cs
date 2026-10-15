@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace AzureFunctionAnalyzers.Tests;
+namespace Bazuzi.AzureFunctionAnalyzers.Tests;
 
 public class RulesTableTests
 {

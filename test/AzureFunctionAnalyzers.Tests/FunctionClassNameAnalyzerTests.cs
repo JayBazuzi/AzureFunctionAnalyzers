@@ -1,7 +1,7 @@
-﻿using Verify = AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<AzureFunctionAnalyzers.FunctionClassNameAnalyzer>;
-using VerifyFix = AzureFunctionAnalyzers.Tests.CSharpCodeFixVerifier<AzureFunctionAnalyzers.FunctionClassNameAnalyzer, AzureFunctionAnalyzers.FunctionClassNameCodeFixProvider>;
+﻿using Verify = Bazuzi.AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<Bazuzi.AzureFunctionAnalyzers.FunctionClassNameAnalyzer>;
+using VerifyFix = Bazuzi.AzureFunctionAnalyzers.Tests.CSharpCodeFixVerifier<Bazuzi.AzureFunctionAnalyzers.FunctionClassNameAnalyzer, Bazuzi.AzureFunctionAnalyzers.FunctionClassNameCodeFixProvider>;
 
-namespace AzureFunctionAnalyzers.Tests;
+namespace Bazuzi.AzureFunctionAnalyzers.Tests;
 
 public class FunctionClassNameAnalyzerTests
 {

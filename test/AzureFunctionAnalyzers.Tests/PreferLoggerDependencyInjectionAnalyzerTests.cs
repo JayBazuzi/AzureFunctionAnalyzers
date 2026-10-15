@@ -1,6 +1,6 @@
-﻿using Verify = AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<AzureFunctionAnalyzers.PreferLoggerDependencyInjectionAnalyzer>;
+﻿using Verify = Bazuzi.AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<Bazuzi.AzureFunctionAnalyzers.PreferLoggerDependencyInjectionAnalyzer>;
 
-namespace AzureFunctionAnalyzers.Tests;
+namespace Bazuzi.AzureFunctionAnalyzers.Tests;
 
 public class PreferLoggerDependencyInjectionAnalyzerTests
 {

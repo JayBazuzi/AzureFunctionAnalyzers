@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace AzureFunctionAnalyzers;
+namespace Bazuzi.AzureFunctionAnalyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class PreferLoggerDependencyInjectionAnalyzer : DiagnosticAnalyzer

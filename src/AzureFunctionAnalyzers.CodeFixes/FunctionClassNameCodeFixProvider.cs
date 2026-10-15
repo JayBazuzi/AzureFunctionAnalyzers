@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
 
-namespace AzureFunctionAnalyzers;
+namespace Bazuzi.AzureFunctionAnalyzers;
 
 [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(FunctionClassNameCodeFixProvider))]
 [Shared]

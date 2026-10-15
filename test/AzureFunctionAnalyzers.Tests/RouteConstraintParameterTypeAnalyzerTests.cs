@@ -1,6 +1,6 @@
-﻿using Verify = AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<AzureFunctionAnalyzers.RouteConstraintParameterTypeAnalyzer>;
+﻿using Verify = Bazuzi.AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<Bazuzi.AzureFunctionAnalyzers.RouteConstraintParameterTypeAnalyzer>;
 
-namespace AzureFunctionAnalyzers.Tests;
+namespace Bazuzi.AzureFunctionAnalyzers.Tests;
 
 public class RouteConstraintParameterTypeAnalyzerTests
 {

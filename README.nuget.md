@@ -1,4 +1,4 @@
-# AzureFunctionAnalyzers
+# Bazuzi.AzureFunctionAnalyzers
 
 Roslyn analyzers for common Azure Functions patterns.
 

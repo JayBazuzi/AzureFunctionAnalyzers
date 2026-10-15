@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace AzureFunctionAnalyzers.Tests;
+namespace Bazuzi.AzureFunctionAnalyzers.Tests;
 
 public partial class NugetReadmeTests
 {

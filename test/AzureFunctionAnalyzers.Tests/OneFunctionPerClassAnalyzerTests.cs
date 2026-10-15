@@ -1,6 +1,6 @@
-﻿using Verify = AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<AzureFunctionAnalyzers.OneFunctionPerClassAnalyzer>;
+﻿using Verify = Bazuzi.AzureFunctionAnalyzers.Tests.CSharpAnalyzerVerifier<Bazuzi.AzureFunctionAnalyzers.OneFunctionPerClassAnalyzer>;
 
-namespace AzureFunctionAnalyzers.Tests;
+namespace Bazuzi.AzureFunctionAnalyzers.Tests;
 
 public class OneFunctionPerClassAnalyzerTests
 {
