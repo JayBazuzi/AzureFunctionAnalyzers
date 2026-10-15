@@ -22,10 +22,11 @@ jobs:
       run: echo "changed=$(git status --porcelain | wc -l)" >> "$GITHUB_OUTPUT"
     - name: Git Commit and Push
       if: steps.git-status.outputs.changed != '0'
-      uses: github-actions-x/commit@v2.9
-      with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
-        commit-message: ". a tidy code"
-        rebase: 'true'
-        name: Github Actions
-        email: actions@github.com
+      shell: bash
+      run: |
+        git config user.name "Github Actions"
+        git config user.email actions@github.com
+        git add -A
+        git commit -m ". a tidy code"
+        git pull --rebase
+        git push
