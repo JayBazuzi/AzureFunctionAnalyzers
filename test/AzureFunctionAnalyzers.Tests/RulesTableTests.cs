@@ -34,10 +34,10 @@ public class RulesTableTests
 
     private static IEnumerable<DiagnosticDescriptor> GetDescriptors()
         => from type in typeof(FunctionClassNameAnalyzer).Assembly.GetTypes()
-        where typeof(DiagnosticAnalyzer).IsAssignableFrom(type) && !type.IsAbstract
-        from fieldInfo in type.GetFields(BindingFlags.Public | BindingFlags.Static)
-        where fieldInfo.FieldType == typeof(DiagnosticDescriptor)
-        let descriptor = (DiagnosticDescriptor)fieldInfo.GetValue(null)!
-        orderby descriptor.Id
-        select descriptor;
+           where typeof(DiagnosticAnalyzer).IsAssignableFrom(type) && !type.IsAbstract
+           from fieldInfo in type.GetFields(BindingFlags.Public | BindingFlags.Static)
+           where fieldInfo.FieldType == typeof(DiagnosticDescriptor)
+           let descriptor = (DiagnosticDescriptor)fieldInfo.GetValue(null)!
+           orderby descriptor.Id
+           select descriptor;
 }
