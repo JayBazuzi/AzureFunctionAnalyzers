@@ -18,6 +18,7 @@ jobs:
     - run: ./tidy-code.cmd
     - name: Check for changes
       id: git-status
+      shell: bash
       run: echo "changed=$(git status --porcelain | wc -l)" >> "$GITHUB_OUTPUT"
     - name: Git Commit and Push
       if: steps.git-status.outputs.changed != '0'
