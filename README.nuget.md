@@ -4,54 +4,27 @@ Roslyn analyzers for common Azure Functions patterns.
 
 ## Rules
 
-<!-- include: test\AzureFunctionAnalyzers.Tests\RulesTableTests.RulesTable.verified.md -->
-| Id | Title |
-| --- | --- |
-| AZURE_FUNCTIONS_0001 | Function class name should match the function name |
-| AZURE_FUNCTIONS_0002 | Prefer `ILogger<T>` over `ILogger` |
-| AZURE_FUNCTIONS_0003 | Prefer injecting `ILogger<T>` over `FunctionContext.GetLogger()` |
-| AZURE_FUNCTIONS_0004 | Class should contain only one function |
-<!-- endInclude -->
+- Function class name should match the function name<!-- include: test\AzureFunctionAnalyzers.Tests\RulesTableTests.RulesList.verified.md -->
+- Prefer `ILogger<T>` over `ILogger`
+- Prefer injecting `ILogger<T>` over `FunctionContext.GetLogger()`
+- Class should contain only one Azure Function
+- Route constraint is incompatible with the parameter type<!-- endInclude -->
 
-## Examples
+## Example
 
-<!-- snippet: FunctionClassNameAnalyzerExample -->
+For example, this class's name doesn't match its function name:
+
+<!-- include: test\AzureFunctionAnalyzers.Tests\NugetReadmeTests.Example.verified.md -->
 ```cs
 class UserGetter
 {
-    [{|#0:Function("GetUsers")|}] // warning: Class name 'UserGetter' does not match function name 'GetUsers', expected 'GetUsersFunction'
+    [Function("GetUsers")] // warning: Class name 'UserGetter' does not match function name 'GetUsers', expected 'GetUsersFunction'
     public void Run()
     {
         //...
     }
 }
 ```
-<!-- endSnippet -->
+<!-- endInclude -->
 
-<!-- snippet: PreferTypedLoggerAnalyzerExample -->
-```cs
-[Function("GetUsers")]
-public void Run(FunctionContext context)
-{
-    var logger = {|#0:context.GetLogger("GetUsersFunction")|};  // warning: 'logger' should be typed 'ILogger<GetUsersFunction>' instead of 'ILogger'
-    //...
-```
-<!-- endSnippet -->
-
-<!-- snippet: PreferLoggerDependencyInjectionAnalyzerExample -->
-```cs
-class GetUsersFunction
-{
-    [Function("GetUsers")]
-    public void Run(FunctionContext context)
-    {
-        var logger = {|#0:context.GetLogger<GetUsersFunction>()|};  // warning: Use constructor-injected ILogger<GetUsersFunction> instead of calling 'GetLogger'
-        //...
-    }
-}
-```
-<!-- endSnippet -->
-
-## Source and issues
-
-https://github.com/JayBazuzi/AzureFunctionAnalyzers
+For more details, see the [full README](https://github.com/JayBazuzi/AzureFunctionAnalyzers#readme).

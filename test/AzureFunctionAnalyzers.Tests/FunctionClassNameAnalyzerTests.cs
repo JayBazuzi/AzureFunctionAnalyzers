@@ -43,27 +43,27 @@ public class FunctionClassNameAnalyzerTests
     [Fact]
     public async Task MismatchedClassName_ReportsDiagnostic()
     {
-        const string source = """
-            using Microsoft.Azure.Functions.Worker;
-
-            // begin-snippet: FunctionClassNameAnalyzerExample
-            class UserGetter
-            {
-                [{|#0:Function("GetUsers")|}] // warning: Class name 'UserGetter' does not match function name 'GetUsers', expected 'GetUsersFunction'
-                public void Run()
-                {
-                    //...
-                }
-            }
-            // end-snippet
-            """;
-
         var expected = Verify.Diagnostic("AZURE_FUNCTIONS_0001")
             .WithLocation(0)
             .WithArguments("UserGetter", "GetUsers", "GetUsersFunction");
 
-        await Verify.VerifyAnalyzerAsync(source, expected);
+        await Verify.VerifyAnalyzerAsync(MismatchedClassNameSource, expected);
     }
+
+    internal const string MismatchedClassNameSource = """
+        using Microsoft.Azure.Functions.Worker;
+
+        // begin-snippet: FunctionClassNameAnalyzerExample
+        class UserGetter
+        {
+            [{|#0:Function("GetUsers")|}] // warning: Class name 'UserGetter' does not match function name 'GetUsers', expected 'GetUsersFunction'
+            public void Run()
+            {
+                //...
+            }
+        }
+        // end-snippet
+        """;
 
     [Fact]
     public async Task MismatchedClassName_CodeFixRenamesClass()

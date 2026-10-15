@@ -1,0 +1,5 @@
+﻿- Function class name should match the function name
+- Prefer `ILogger<T>` over `ILogger`
+- Prefer injecting `ILogger<T>` over `FunctionContext.GetLogger()`
+- Class should contain only one Azure Function
+- Route constraint is incompatible with the parameter type

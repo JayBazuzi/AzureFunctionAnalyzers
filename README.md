@@ -14,12 +14,14 @@ Roslyn analyzers for common Azure Functions patterns.
 | AZURE_FUNCTIONS_0001 | Function class name should match the function name |
 | AZURE_FUNCTIONS_0002 | Prefer `ILogger<T>` over `ILogger` |
 | AZURE_FUNCTIONS_0003 | Prefer injecting `ILogger<T>` over `FunctionContext.GetLogger()` |
-| AZURE_FUNCTIONS_0004 | Class should contain only one function |
+| AZURE_FUNCTIONS_0004 | Class should contain only one Azure Function |
+| AZURE_FUNCTIONS_0005 | Route constraint is incompatible with the parameter type |
 <!-- endInclude -->
 
 ## Examples
 
 <!-- snippet: FunctionClassNameAnalyzerExample -->
+<a id='snippet-FunctionClassNameAnalyzerExample'></a>
 ```cs
 class UserGetter
 {
@@ -30,9 +32,11 @@ class UserGetter
     }
 }
 ```
+<sup><a href='/test/AzureFunctionAnalyzers.Tests/FunctionClassNameAnalyzerTests.cs#L56-L65' title='Snippet source file'>snippet source</a> | <a href='#snippet-FunctionClassNameAnalyzerExample' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <!-- snippet: PreferTypedLoggerAnalyzerExample -->
+<a id='snippet-PreferTypedLoggerAnalyzerExample'></a>
 ```cs
 [Function("GetUsers")]
 public void Run(FunctionContext context)
@@ -40,9 +44,11 @@ public void Run(FunctionContext context)
     var logger = {|#0:context.GetLogger("GetUsersFunction")|};  // warning: 'logger' should be typed 'ILogger<GetUsersFunction>' instead of 'ILogger'
     //...
 ```
+<sup><a href='/test/AzureFunctionAnalyzers.Tests/PreferTypedLoggerAnalyzerTests.cs#L73-L79' title='Snippet source file'>snippet source</a> | <a href='#snippet-PreferTypedLoggerAnalyzerExample' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <!-- snippet: PreferLoggerDependencyInjectionAnalyzerExample -->
+<a id='snippet-PreferLoggerDependencyInjectionAnalyzerExample'></a>
 ```cs
 class GetUsersFunction
 {
@@ -54,4 +60,5 @@ class GetUsersFunction
     }
 }
 ```
+<sup><a href='/test/AzureFunctionAnalyzers.Tests/PreferLoggerDependencyInjectionAnalyzerTests.cs#L72-L82' title='Snippet source file'>snippet source</a> | <a href='#snippet-PreferLoggerDependencyInjectionAnalyzerExample' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
