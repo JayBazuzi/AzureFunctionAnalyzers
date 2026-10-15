@@ -32,8 +32,8 @@ public class RulesTableTests
         return Verify(string.Join("\n", items), extension: "md");
     }
 
-    private static IEnumerable<DiagnosticDescriptor> GetDescriptors() =>
-        from type in typeof(FunctionClassNameAnalyzer).Assembly.GetTypes()
+    private static IEnumerable<DiagnosticDescriptor> GetDescriptors()
+        => from type in typeof(FunctionClassNameAnalyzer).Assembly.GetTypes()
         where typeof(DiagnosticAnalyzer).IsAssignableFrom(type) && !type.IsAbstract
         from fieldInfo in type.GetFields(BindingFlags.Public | BindingFlags.Static)
         where fieldInfo.FieldType == typeof(DiagnosticDescriptor)
